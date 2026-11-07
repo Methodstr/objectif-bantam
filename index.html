@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Objectif Bantam</title>
+<meta name="description" content="Guide d'entraînement de Théo : 12 semaines pour devenir plus rapide, plus fort et plus explosif.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0f2140; --navy2:#1b335c; --ice:#e8f2fb; --ice2:#cfe3f5; --gold:#e0a526; --gold2:#fff4d9;
+  --ink:#14213a; --muted:#566279; --line:#d9e2ee; --bg:#f5f8fc; --card:#ffffff; --ok:#1f8a4c; --warn:#b4471f;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+h1,h2,h3{font-family:Oswald,Impact,"Arial Narrow",sans-serif;letter-spacing:.02em;line-height:1.15;margin:0}
+header{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;padding:22px 16px 18px}
+.wrap{max-width:960px;margin:0 auto}
+header h1{font-size:clamp(30px,7vw,46px);text-transform:uppercase}
+header h1 span{color:var(--gold)}
+header p{margin:6px 0 0;color:var(--ice2);font-size:15px}
+.week{display:flex;align-items:center;gap:10px;margin-top:14px;flex-wrap:wrap}
+.week label{font-weight:700;font-size:14px;color:var(--ice)}
+.week button{border:0;background:rgba(255,255,255,.14);color:#fff;width:36px;height:36px;border-radius:8px;font-size:20px;cursor:pointer}
+.week output{font-family:Oswald,sans-serif;font-size:22px;min-width:118px;text-align:center}
+.week .phase{background:var(--gold);color:var(--navy);font-weight:700;font-size:13px;padding:3px 10px;border-radius:99px}
+nav{position:sticky;top:0;z-index:5;background:var(--navy);box-shadow:0 2px 8px rgba(0,0,0,.15)}
+nav .wrap{display:flex;overflow-x:auto;gap:2px;padding:0 8px;scrollbar-width:none}
+nav .wrap::-webkit-scrollbar{display:none}
+nav a{flex:0 0 auto;color:var(--ice2);text-decoration:none;padding:12px 12px;font-weight:600;font-size:14px;border-bottom:3px solid transparent;white-space:nowrap}
+nav a b{color:var(--gold);margin-right:4px}
+nav a.on{color:#fff;border-bottom-color:var(--gold)}
+main{padding:18px 16px 60px}
+section{display:none}
+section.on{display:block}
+section > h2{font-size:30px;text-transform:uppercase;color:var(--navy);margin:6px 0 4px}
+.lead{font-size:17px;color:var(--muted);margin:0 0 18px}
+h3{font-size:21px;color:var(--navy);margin:26px 0 10px;text-transform:uppercase}
+.box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin:12px 0}
+.callout{background:var(--gold2);border-left:5px solid var(--gold);border-radius:10px;padding:12px 14px;margin:14px 0}
+.callout.red{background:#fdeee8;border-left-color:var(--warn)}
+.callout.blue{background:var(--ice);border-left-color:var(--navy2)}
+.callout b:first-child{display:block;margin-bottom:2px}
+ul.tight{margin:6px 0;padding-left:20px}
+ul.tight li{margin:4px 0}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{text-align:left;padding:8px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.tbl{overflow-x:auto}
+.days{display:grid;grid-template-columns:repeat(auto-fill,minmax(122px,1fr));gap:8px}
+.day{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px}
+.day b{font-family:Oswald,sans-serif;font-size:18px;color:var(--navy);display:block}
+.day.gym{border-color:var(--gold);box-shadow:inset 0 4px 0 var(--gold)}
+.day.match{background:var(--navy);color:#fff}
+.day.match b{color:var(--gold)}
+.day small{font-size:13px;line-height:1.35;display:block}
+.timeline{list-style:none;margin:0;padding:0}
+.timeline li{display:flex;gap:12px;padding:8px 0;border-bottom:1px dashed var(--line)}
+.timeline time{font-family:Oswald,sans-serif;font-size:18px;color:var(--gold);min-width:64px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.card .pic{background:var(--ice);border-bottom:1px solid var(--line);padding:6px 10px 0}
+.card svg{display:block;width:100%;height:auto;max-height:160px}
+.card .body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.card h4{margin:0;font-size:17px;line-height:1.25}
+.dose{flex:0 0 auto;background:var(--navy);color:#fff;font-family:Oswald,sans-serif;font-size:19px;padding:2px 10px;border-radius:8px;white-space:nowrap}
+.card p{margin:0;color:var(--muted);font-size:15px}
+.sets{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto;padding-top:6px}
+.sets label{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border:2px solid var(--ice2);border-radius:10px;cursor:pointer;font-weight:700;color:var(--muted);user-select:none;font-size:14px}
+.sets input{position:absolute;opacity:0;pointer-events:none}
+.sets label.done{background:var(--ok);border-color:var(--ok);color:#fff}
+.sets .lbl{width:auto;border:0;cursor:default;font-weight:600;font-size:13px;padding-right:2px}
+.progress{display:flex;align-items:center;gap:10px;margin:10px 0 4px;font-weight:600;font-size:14px;color:var(--muted)}
+.bar{flex:1;height:10px;background:var(--ice2);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ok);width:0;transition:width .25s}
+.reset{border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 10px;font-size:13px;color:var(--muted);cursor:pointer}
+.chk{width:100%;border-collapse:separate;border-spacing:0}
+.chk th,.chk td{text-align:center;padding:6px 4px}
+.chk th:first-child,.chk td:first-child{text-align:left;padding-left:2px}
+.chk td:first-child{font-weight:700;white-space:nowrap}
+.chk input{width:24px;height:24px;accent-color:var(--ok);cursor:pointer}
+.chk tr.m td:first-child{color:var(--warn)}
+.tests input{width:90px;padding:8px;border:1px solid var(--line);border-radius:8px;font:inherit}
+.tests .delta{display:block;font-size:12px;font-weight:700;color:var(--ok);min-height:16px}
+.phases{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.ph{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.ph.on{border:2px solid var(--gold);background:var(--gold2)}
+.ph h4{margin:0 0 4px;font-family:Oswald,sans-serif;font-size:20px;color:var(--navy)}
+.ph .wk{font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chips button{border:1px solid var(--line);background:#fff;border-radius:10px;min-width:46px;padding:6px 8px;font:600 14px Inter,sans-serif;cursor:pointer;color:var(--ink)}
+.chips button small{display:block;font-size:10px;color:var(--muted);font-weight:600}
+.chips button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.chips button.on small{color:var(--gold)}
+.plate{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.plate svg{width:170px;height:170px;flex:0 0 auto}
+.macro{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.macro .box{margin:0}
+.macro h4{margin:0 0 4px;font-size:17px}
+.macro .tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--ice);color:var(--navy2);margin-bottom:6px}
+.note{font-size:13px;color:var(--muted)}
+footer{text-align:center;font-size:13px;color:var(--muted);padding:20px 16px 40px}
+/* dessins */
+.fig .gr{stroke:#9fb2c8;stroke-width:1.5}
+.fig .lb{fill:none;stroke:#8aa2c2;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+.fig .lf{fill:none;stroke:var(--navy);stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+.fig .hd{fill:var(--navy)}
+.fig .pr{fill:#c6d6ea;stroke:#7f97b6;stroke-width:1.5}
+.fig .ball{fill:var(--gold);stroke:#a87a12;stroke-width:1.5}
+.fig .ar{fill:none;stroke:var(--gold);stroke-width:3;stroke-linecap:round;marker-end:url(#ah)}
+.fig .ar2{fill:none;stroke:var(--gold);stroke-width:3;stroke-linecap:round;marker-end:url(#ah);marker-start:url(#ahs)}
+.fig .dash{fill:none;stroke:#7f97b6;stroke-width:1.8;stroke-dasharray:4 4}
+.fig .rope{fill:none;stroke:var(--warn);stroke-width:2}
+.fig .band{stroke:#d24b7a;stroke-width:4;stroke-linecap:round}
+.fig .stick{stroke:#6b4b2a;stroke-width:3.5;stroke-linecap:round}
+.fig .puck{fill:#111}
+.fig text{font:700 10px Inter,sans-serif;fill:var(--navy2)}
+@media print{nav,header .week,.reset{display:none}section{display:block!important;page-break-before:always}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#e0a526"/></marker>
+    <marker id="ahs" viewBox="0 0 10 10" refX="3" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#e0a526"/></marker>
+  </defs>
+</svg>
+
+<header>
+  <div class="wrap">
+    <h1>Objectif <span>Bantam</span></h1>
+    <p>Le plan de Théo · 12 semaines pour devenir plus rapide, plus fort et plus explosif.</p>
+    <div class="week">
+      <label for="wk">Je suis à la</label>
+      <button type="button" id="wkMinus" aria-label="Semaine précédente">−</button>
+      <output id="wk">Semaine 1</output>
+      <button type="button" id="wkPlus" aria-label="Semaine suivante">+</button>
+      <span class="phase" id="wkPhase">J'apprends</span>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <div class="wrap" id="tabs">
+    <a href="#plan"><b>1</b>Mon plan</a>
+    <a href="#echauffement"><b>2</b>Échauffement</a>
+    <a href="#seance1"><b>3</b>Séance 1</a>
+    <a href="#seance2"><b>4</b>Séance 2</a>
+    <a href="#seance3"><b>5</b>Séance 3</a>
+    <a href="#chaque-jour"><b>6</b>Chaque jour</a>
+    <a href="#manger"><b>7</b>Manger</a>
+    <a href="#progression"><b>8</b>Progression</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- 1. MON PLAN -->
+<section id="plan">
+  <h2>Mon plan</h2>
+  <p class="lead">Les meilleurs joueurs ne font pas juste jouer au hockey. Ce sont des athlètes complets : rapides, forts, bien reposés et bien nourris. Ce guide, c'est ton plan pour les 12 prochaines semaines. Tu le suis, tu coches, tu progresses.</p>
+
+  <h3>Ma semaine type</h3>
+  <div class="days">
+    <div class="day gym"><b>Lundi</b><small>Gym à 6 h 45 avec papa<br>Séance 1 + routine</small></div>
+    <div class="day"><b>Mardi</b><small>Routine + hockey</small></div>
+    <div class="day gym"><b>Mercredi</b><small>Gym à 6 h 45<br>Séance 2 + routine</small></div>
+    <div class="day"><b>Jeudi</b><small>Routine + hockey</small></div>
+    <div class="day gym"><b>Vendredi</b><small>Gym à 6 h 45<br>Séance 3 + routine</small></div>
+    <div class="day match"><b>Samedi</b><small>Match</small></div>
+    <div class="day"><b>Dimanche</b><small>Repos ou défi lancers</small></div>
+  </div>
+
+  <div class="grid2">
+    <div class="box">
+      <h3 style="margin-top:0">Un matin de gym</h3>
+      <ul class="timeline">
+        <li><time>6 h 00</time><span>Réveil, un verre d'eau et une petite collation</span></li>
+        <li><time>6 h 45</time><span>Arrivée au gym et échauffement</span></li>
+        <li><time>6 h 55</time><span>Séance (environ 40 min)</span></li>
+        <li><time>7 h 35</time><span>Sauna (optionnel) ou étirements, puis douche</span></li>
+        <li><time>8 h 00</time><span>Vrai déjeuner avant l'école</span></li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3 style="margin-top:0">Mon sommeil</h3>
+      <p style="margin:0 0 8px">Objectif : <b>9 à 11 heures par nuit.</b></p>
+      <div class="tbl"><table>
+        <tr><th>Nuits</th><th>Lumière fermée</th><th>Réveil</th></tr>
+        <tr><td>Dim, mar, jeu<br><span class="note">veille de gym</span></td><td>21 h</td><td>6 h</td></tr>
+        <tr><td>Lun, mer</td><td>21 h 30</td><td>7 h</td></tr>
+        <tr><td>Ven, sam</td><td>22 h</td><td>8 h à 9 h</td></tr>
+      </table></div>
+      <ul class="tight">
+        <li>Écrans fermés 1 h avant le dodo. Pas de cellulaire dans la chambre.</li>
+        <li>Après un match tard : collation, douche, au lit.</li>
+        <li>C'est en dormant que ton corps libère l'hormone de croissance. Dormir, c'est s'entraîner.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Pourquoi ça marche</h3>
+  <div class="grid2">
+    <div class="box"><b>L'explosion</b><br>Les sauts et les sprints entraînent ton système nerveux. Résultat : des départs plus rapides.</div>
+    <div class="box"><b>La force</b><br>Des jambes plus fortes rendent chaque coup de patin plus puissant.</div>
+    <div class="box"><b>La routine</b><br>Un peu de rondelle chaque jour, c'est ce qui fait la différence avec le temps.</div>
+    <div class="box"><b>La nourriture et le sommeil</b><br>C'est là que ton corps se reconstruit, plus fort qu'avant.</div>
+  </div>
+
+  <h3>Mes règles d'athlète</h3>
+  <div class="box">
+    <ul class="tight">
+      <li><b>Vite et propre.</b> Chaque répétition est rapide et bien faite.</li>
+      <li><b>Si ça ralentit, on arrête la série.</b> Repos 1 min, puis on repart.</li>
+      <li><b>Atterrir comme un chat :</b> doucement, sans bruit, genoux pliés.</li>
+      <li><b>Charges légères.</b> Seul, garde toujours 4 reps en réserve. Jamais un nouvel exercice sans l'avoir appris avec un adulte.</li>
+      <li><b>Pas de Séance 1 la veille d'un match.</b> Semaine chargée = 2 séances, c'est correct.</li>
+    </ul>
+  </div>
+  <div class="callout red"><b>Douleur au genou ou au talon?</b>Arrête les sauts et dis-le à papa. Ça peut être un mal de croissance (Osgood-Schlatter au genou, Sever au talon). Ça se soigne, mais il faut le dire.</div>
+  <div class="callout blue"><b>Le sauna (optionnel)</b>Ce n'est pas un outil de performance, c'est juste pour relaxer.
+    <ul class="tight">
+      <li>Toujours avec papa.</li>
+      <li>5 à 10 min maximum, sur le banc du bas.</li>
+      <li>De l'eau avant et après.</li>
+      <li>Tu sors dès que tu as trop chaud ou que tu es étourdi.</li>
+      <li>Jamais le jour d'un match.</li>
+      <li>On vérifie le règlement du gym : c'est souvent interdit aux moins de 16 ans.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 2. ÉCHAUFFEMENT -->
+<section id="echauffement">
+  <h2>Échauffement</h2>
+  <p class="lead">10 minutes avant chaque séance. On réveille le corps avant de lui demander d'exploser.</p>
+  <div class="progress"><span id="p-warm">0 / 0</span><div class="bar"><i id="b-warm"></i></div><button class="reset" data-reset="warm">Effacer</button></div>
+  <div class="cards" data-list="warm"></div>
+</section>
+
+<!-- 3. SÉANCE 1 -->
+<section id="seance1">
+  <h2>Séance 1 · Explosion</h2>
+  <p class="lead">Lundi. Tout se fait vite, avec beaucoup de repos. On veut de la qualité, pas de la fatigue.</p>
+  <div class="progress"><span id="p-s1">0 / 0</span><div class="bar"><i id="b-s1"></i></div><button class="reset" data-reset="s1">Effacer</button></div>
+  <div class="cards" data-list="s1"></div>
+  <h3>Bloc jambes A</h3>
+  <div class="cards" data-list="s1b"></div>
+</section>
+
+<!-- 4. SÉANCE 2 -->
+<section id="seance2">
+  <h2>Séance 2 · Force</h2>
+  <p class="lead">Mercredi. Mouvements lents et contrôlés, charges légères. La technique d'abord, toujours.</p>
+  <div class="progress"><span id="p-s2">0 / 0</span><div class="bar"><i id="b-s2"></i></div><button class="reset" data-reset="s2">Effacer</button></div>
+  <div class="cards" data-list="s2"></div>
+</section>
+
+<!-- 5. SÉANCE 3 -->
+<section id="seance3">
+  <h2>Séance 3 · Latéral et une jambe</h2>
+  <p class="lead">Vendredi. Au hockey, tu pousses de côté et sur une jambe à la fois. On entraîne exactement ça.</p>
+  <div class="progress"><span id="p-s3">0 / 0</span><div class="bar"><i id="b-s3"></i></div><button class="reset" data-reset="s3">Effacer</button></div>
+  <div class="cards" data-list="s3"></div>
+  <h3>Bloc jambes B</h3>
+  <div class="cards" data-list="s3b"></div>
+</section>
+
+<!-- 6. CHAQUE JOUR -->
+<section id="chaque-jour">
+  <h2>Chaque jour</h2>
+  <p class="lead">20 à 30 minutes après l'école. Petit à petit, chaque jour, c'est comme ça qu'on devient bon.</p>
+
+  <h3>Ma routine de la semaine</h3>
+  <div class="box tbl">
+    <table class="chk" id="routine"></table>
+    <p class="note" style="margin:8px 0 0">Jour de match : seulement la mobilité, l'eau et le sommeil.</p>
+  </div>
+
+  <h3>Lancers : 50 à 100 rondelles</h3>
+  <div class="box tbl">
+    <table>
+      <tr><th>Jour</th><th>Thème</th></tr>
+      <tr><td>Lundi</td><td>Lancer du poignet : précision dans les 4 coins</td></tr>
+      <tr><td>Mardi</td><td>Lancer du revers</td></tr>
+      <tr><td>Mercredi</td><td>Tir sur réception</td></tr>
+      <tr><td>Jeudi</td><td>Snap shot</td></tr>
+      <tr><td>Vendredi</td><td>Lancers en mouvement</td></tr>
+      <tr><td>Samedi (match)</td><td>20 lancers légers ou congé</td></tr>
+      <tr><td>Dimanche</td><td>Défi 100 lancers : compte les cibles touchées</td></tr>
+    </table>
+  </div>
+  <div class="callout"><b>Truc de pro</b>50 lancers en visant valent mieux que 200 lancers n'importe comment.</div>
+
+  <h3>Rondelle et coordination</h3>
+  <div class="cards" data-list="daily"></div>
+
+  <h3>Mobilité le soir · 10 min</h3>
+  <div class="cards" data-list="mob"></div>
+
+  <div class="callout blue"><b>Et aussi, chaque jour</b>Ta bouteille d'eau te suit partout. Et tu es au lit à l'heure.</div>
+</section>
+
+<!-- 7. MANGER -->
+<section id="manger">
+  <h2>Manger</h2>
+  <p class="lead">Ton corps, c'est une voiture de course qui grandit en roulant. L'entraînement vide le réservoir et use les muscles. La nourriture remplit le réservoir et répare les muscles. C'est normal d'avoir très faim. Ne saute jamais un repas.</p>
+
+  <h3>Les macros, simplement</h3>
+  <div class="macro">
+    <div class="box"><span class="tag">L'essence</span><h4>Glucides</h4>Pâtes, riz, pain, patates, gruau, fruits. Les plus importants <b>avant</b> l'effort.</div>
+    <div class="box"><span class="tag">Les briques des muscles</span><h4>Protéines</h4>Poulet, poisson, œufs, viande, lait, yogourt grec, fromage, tofu, beurre d'arachide. À chaque repas, surtout <b>après</b> l'effort.</div>
+    <div class="box"><span class="tag">L'huile du moteur</span><h4>Bons gras</h4>Noix, avocat, huile d'olive, saumon, œufs. Un peu chaque jour, mais pas juste avant un match.</div>
+    <div class="box"><span class="tag">Le refroidisseur</span><h4>Eau</h4>Bois toute la journée. Pipi foncé = pas assez bu.</div>
+  </div>
+
+  <h3>Mon assiette</h3>
+  <div class="box plate">
+    <svg viewBox="0 0 100 100" role="img" aria-label="Assiette : moitié fruits et légumes, quart féculents, quart protéines">
+      <circle cx="50" cy="50" r="48" fill="#fff" stroke="#c6d6ea" stroke-width="2"/>
+      <path d="M50 50 L50 6 A44 44 0 0 0 50 94 Z" fill="#7cc47f"/>
+      <path d="M50 50 L50 6 A44 44 0 0 1 94 50 Z" fill="#f2c45a"/>
+      <path d="M50 50 L94 50 A44 44 0 0 1 50 94 Z" fill="#e58b6d"/>
+      <text x="27" y="53" font-size="8" font-weight="700" fill="#14213a" text-anchor="middle">½ fruits</text>
+      <text x="27" y="62" font-size="8" font-weight="700" fill="#14213a" text-anchor="middle">légumes</text>
+      <text x="70" y="34" font-size="7.5" font-weight="700" fill="#14213a" text-anchor="middle">¼ énergie</text>
+      <text x="70" y="72" font-size="7.5" font-weight="700" fill="#14213a" text-anchor="middle">¼ muscles</text>
+    </svg>
+    <div>
+      <p style="margin:0 0 6px"><b>½</b> fruits et légumes</p>
+      <p style="margin:0 0 6px"><b>¼</b> énergie : féculents (pâtes, riz, pain, patates)</p>
+      <p style="margin:0 0 6px"><b>¼</b> muscles : protéines</p>
+      <p class="note" style="margin:0">Les jours d'entraînement et de match, on met plus de féculents.</p>
+    </div>
+  </div>
+
+  <h3>Journée « gym le matin »</h3>
+  <div class="box"><ul class="timeline">
+    <li><time>6 h</time><span>Banane + verre de lait (ou rôtie au beurre d'arachide)</span></li>
+    <li><time>8 h</time><span>Déjeuner après le gym : 2 ou 3 œufs, rôties, fruit, lait. Ou gruau + yogourt grec + petits fruits + beurre d'arachide</span></li>
+    <li><time>10 h</time><span>Fruit et fromage</span></li>
+    <li><time>12 h</time><span>Wrap ou sandwich au poulet, crudités, yogourt</span></li>
+    <li><time>15 h 30</time><span>Craquelins et fromage, ou bagel au beurre d'arachide</span></li>
+    <li><time>18 h</time><span>Pâtes ou riz + protéine + légumes + lait</span></li>
+    <li><time>Soir</time><span>Si tu as faim : yogourt, céréales ou lait</span></li>
+  </ul></div>
+
+  <h3>Journée de match <span class="note" style="text-transform:none;font-family:Inter,sans-serif;font-size:14px">(exemple : match à 18 h)</span></h3>
+  <div class="box"><ul class="timeline">
+    <li><time>Matin</time><span>Crêpes ou gaufres de blé entier, œufs, fruits</span></li>
+    <li><time>Midi</time><span>Dîner normal</span></li>
+    <li><time>15 h</time><span>Repas d'avant-match, 3 h avant : pâtes sauce tomate au poulet, pain, fruit. Peu gras, rien de nouveau.</span></li>
+    <li><time>17 h</time><span>Collation légère, 1 h avant : banane, compote ou craquelins</span></li>
+    <li><time>Match</time><span>De l'eau</span></li>
+    <li><time>Après</time><span>Dans les 30 à 60 min : lait au chocolat + fruit. Puis un vrai repas dans les 2 h.</span></li>
+  </ul></div>
+
+  <h3>Journée de repos</h3>
+  <div class="box">Même structure : 3 repas + 2 ou 3 collations, avec encore plus de fruits et de légumes.</div>
+
+  <h3>Mes règles d'or</h3>
+  <div class="box"><ul class="tight">
+    <li>3 repas + 2 ou 3 collations. Jamais de déjeuner sauté.</li>
+    <li>De l'eau partout. Le lait est une excellente boisson de récupération.</li>
+    <li>Pas de boissons énergisantes. Pas de protéine en poudre ni de suppléments à ton âge : la vraie nourriture suffit.</li>
+    <li>Les gâteries, c'est correct de temps en temps.</li>
+  </ul></div>
+</section>
+
+<!-- 8. PROGRESSION -->
+<section id="progression">
+  <h2>Progression</h2>
+  <p class="lead">12 semaines, 3 étapes. Choisis ta semaine : les séances et ta routine se cochent pour cette semaine-là.</p>
+
+  <div class="phases">
+    <div class="ph" data-ph="1"><div class="wk">Semaines 1 à 4</div><h4>J'apprends</h4>La technique, des charges légères, et je fais mes tests de départ.</div>
+    <div class="ph" data-ph="2"><div class="wk">Semaines 5 à 8</div><h4>Je construis</h4>+1 série ou un peu plus de charge, seulement si la technique est parfaite.</div>
+    <div class="ph" data-ph="3"><div class="wk">Semaines 9 à 12</div><h4>Je performe</h4>Vitesse max en Séance 1, un peu plus lourd en Séance 2, et je refais les tests.</div>
+  </div>
+  <div class="callout"><b>Aux 4 semaines : une semaine plus facile</b>On fait une série de moins. Le corps devient plus fort quand il récupère.</div>
+
+  <h3>Ma semaine</h3>
+  <div class="box">
+    <div class="chips" id="chips"></div>
+  </div>
+
+  <h3>Mes tests</h3>
+  <p style="margin:0 0 8px">Au départ, à la semaine 6 et à la semaine 12. Toujours <b>après l'échauffement</b>.</p>
+  <div class="box tbl tests">
+    <table id="tests"></table>
+  </div>
+  <div class="grid2">
+    <div class="box"><b>Saut en longueur pieds joints</b><br>3 essais, tu notes le meilleur, en cm.</div>
+    <div class="box"><b>Sprint 10 m</b><br>2 essais, tu notes le meilleur. Papa chronomètre avec le téléphone.</div>
+    <div class="box"><b>Précision</b><br>20 lancers du poignet : combien de cibles touchées?</div>
+  </div>
+  <p class="note">Tes cases et tes résultats sont sauvegardés dans ce navigateur, sur cet appareil seulement.</p>
+</section>
+
+</main>
+<footer>Objectif Bantam · Le plan de Théo · Vite et propre.</footer>
+
+<script>
+(function(){
+"use strict";
+var store = {
+  get:function(k){try{return localStorage.getItem("ob:"+k);}catch(e){return null;}},
+  set:function(k,v){try{if(v===null||v===""){localStorage.removeItem("ob:"+k);}else{localStorage.setItem("ob:"+k,v);}}catch(e){}}
+};
+
+/* ---------- Dessins ---------- */
+var POSE = {
+  corde:{h:[60,16],n:[60,26],p:[60,54],ka:[63,72],fa:[64,87],kb:[57,72],fb:[56,87],ea:[70,40],wa:[75,50],eb:[50,40],wb:[45,50],
+    x:'<path class="rope" d="M45 50 Q32 104 60 97 Q88 104 75 50"/><path class="dash" d="M50 94 H70"/>'},
+  balance:{h:[46,16],n:[46,26],p:[46,54],kb:[46,72],fb:[46,91],ka:[60,66],fa:[74,76],eb:[36,36],wb:[27,38],ea:[52,40],wa:[56,52],
+    u:'<rect class="pr" x="20" y="6" width="6" height="86"/>',x:'<path class="ar2" d="M54 88 Q74 92 86 70"/>'},
+  fenteRot:{h:[58,24],n:[58,34],p:[58,60],ka:[76,63],fa:[78,91],kb:[48,85],fb:[34,90],ea:[68,40],wa:[80,42],eb:[66,44],wb:[78,47],
+    x:'<path class="ar" d="M42 30 A18 7 0 1 0 74 28"/>'},
+  skips:{h:[60,14],n:[60,24],p:[60,52],ka:[74,52],fa:[72,70],kb:[58,72],fb:[56,89],eb:[68,32],wb:[74,22],ea:[52,38],wa:[46,48],
+    x:'<path class="ar" d="M86 66 V46"/>'},
+  chasses:{h:[60,26],n:[60,36],p:[60,60],kb:[46,72],fb:[40,91],ka:[74,72],fa:[80,91],eb:[50,46],wb:[46,57],ea:[70,46],wa:[74,57],
+    x:'<path class="ar" d="M32 50 H10"/><path class="ar" d="M88 50 H110"/>'},
+  sprint:{h:[72,18],n:[67,28],p:[56,52],ka:[72,58],fa:[68,75],kb:[48,70],fb:[36,86],eb:[76,36],wb:[84,28],ea:[56,38],wa:[48,46],
+    x:'<path class="ar" d="M88 82 H114"/><path class="dash" d="M8 30 H26 M4 42 H22 M10 54 H26"/>'},
+  sprintProg:{h:[66,18],n:[62,28],p:[54,52],ka:[70,58],fa:[66,75],kb:[46,70],fb:[34,86],eb:[70,36],wb:[78,28],ea:[54,38],wa:[46,46],
+    x:'<text x="84" y="22">50 %</text><text x="84" y="40">70 %</text><text x="84" y="58">90 %</text><path class="ar" d="M84 80 H114"/>'},
+  box:{h:[82,22],n:[80,32],p:[76,51],ka:[88,58],fa:[84,72],kb:[84,60],fb:[80,72],ea:[88,40],wa:[95,46],eb:[86,42],wb:[93,48],
+    u:'<rect class="pr" x="64" y="72" width="34" height="20" rx="2"/>',x:'<path class="ar" d="M14 90 Q28 26 62 52"/>'},
+  patineur:{h:[72,22],n:[72,32],p:[69,56],ka:[75,72],fa:[72,91],kb:[60,70],fb:[62,84],ea:[80,42],wa:[86,52],eb:[62,40],wb:[54,32],
+    x:'<path class="ar" d="M12 76 Q32 40 58 66"/><ellipse class="pr" cx="18" cy="91" rx="7" ry="2"/>'},
+  mbRot:{h:[54,16],n:[54,26],p:[54,54],kb:[46,72],fb:[42,91],ka:[64,72],fa:[68,91],eb:[64,36],wb:[76,38],ea:[64,40],wa:[76,41],
+    u:'<rect class="pr" x="104" y="6" width="6" height="86"/>',x:'<circle class="ball" cx="84" cy="39" r="7"/><path class="ar" d="M93 39 H101"/><path class="ar" d="M40 62 A16 6 0 0 0 70 62"/>'},
+  sprint10:{h:[66,40],n:[60,47],p:[44,57],ka:[56,72],fa:[52,91],kb:[38,76],fb:[28,91],ea:[64,60],wa:[66,72],eb:[54,58],wb:[50,68],
+    x:'<path class="pr" d="M8 92 L13 80 L18 92 Z"/><path class="pr" d="M104 92 L109 80 L114 92 Z"/><path class="ar" d="M78 70 H100"/><text x="78" y="62">10 m</text>'},
+  planche:{h:[94,59],n:[85,66],p:[56,70],ka:[40,78],fa:[22,88],kb:[40,78],fb:[22,88],ea:[85,89],wa:[98,89],eb:[85,89],wb:[98,89],
+    x:'<path class="dash" d="M20 60 H96"/>'},
+  chaise:{h:[34,30],n:[32,40],p:[32,64],ka:[56,64],fa:[56,91],kb:[54,66],fb:[54,91],ea:[40,52],wa:[50,60],eb:[38,54],wb:[48,62],
+    u:'<rect class="pr" x="20" y="6" width="6" height="86"/>',x:'<text x="70" y="40">20-30 s</text>'},
+  mollets:{h:[64,10],n:[64,20],p:[64,48],ka:[64,66],fa:[67,80],kb:[60,66],fb:[52,72],ea:[76,30],wa:[90,32],eb:[60,34],wb:[58,46],
+    u:'<rect class="pr" x="50" y="82" width="30" height="10"/><rect class="pr" x="92" y="6" width="6" height="86"/>',x:'<path class="ar" d="M38 72 V52"/>'},
+  pont:{h:[18,85],n:[30,85],p:[60,68],kb:[80,72],fb:[82,91],ka:[78,60],fa:[98,51],eb:[42,89],wb:[54,89],ea:[42,89],wa:[54,89],
+    x:'<path class="ar" d="M60 58 V44"/>'},
+  goblet:{h:[58,28],n:[58,38],p:[50,64],ka:[70,66],fa:[64,91],kb:[67,68],fb:[61,91],ea:[66,52],wa:[64,44],eb:[64,54],wb:[62,46],
+    x:'<rect x="58" y="38" width="12" height="9" rx="3" fill="#566279"/>'},
+  fenteArr:{h:[60,24],n:[60,34],p:[60,60],ka:[76,63],fa:[76,91],kb:[52,87],fb:[38,90],ea:[62,46],wa:[63,58],eb:[58,46],wb:[57,58],
+    x:'<path class="ar" d="M30 74 H10"/>'},
+  rdl:{h:[86,34],n:[78,38],p:[50,48],ka:[54,70],fa:[52,91],kb:[52,70],fb:[50,91],ea:[76,52],wa:[74,66],eb:[74,52],wb:[72,66],
+    x:'<rect x="66" y="64" width="16" height="6" rx="2" fill="#566279"/><path class="ar" d="M42 40 H22"/>'},
+  pompes:{h:[95,51],n:[86,57],p:[56,66],ka:[40,77],fa:[22,89],kb:[40,77],fb:[22,89],ea:[86,74],wa:[86,91],eb:[84,74],wb:[84,91],
+    x:'<path class="ar2" d="M106 62 V82"/>'},
+  rangee:{h:[82,54],n:[74,58],p:[48,73],ka:[34,82],fa:[20,90],kb:[34,82],fb:[20,90],ea:[68,46],wa:[80,40],eb:[66,48],wb:[78,41],
+    u:'<rect class="pr" x="100" y="20" width="5" height="72"/><path d="M66 40 H104" stroke="#566279" stroke-width="4" stroke-linecap="round"/>',x:'<path class="ar" d="M58 84 L64 70"/>'},
+  copen:{h:[14,66],n:[22,72],p:[54,70],ka:[76,67],fa:[98,62],kb:[70,80],fb:[78,90],ea:[22,90],wa:[34,90],eb:[26,58],wb:[30,46],
+    u:'<rect class="pr" x="86" y="64" width="28" height="28" rx="2"/>'},
+  longueur:{h:[90,40],n:[88,48],p:[80,64],ka:[96,70],fa:[92,91],kb:[94,72],fb:[90,91],ea:[98,54],wa:[106,58],eb:[96,56],wb:[104,60],
+    x:'<path class="ar" d="M14 88 Q40 18 74 58"/><ellipse class="pr" cx="14" cy="91" rx="7" ry="2"/>'},
+  uneJambe:{h:[66,24],n:[66,34],p:[64,58],ka:[70,73],fa:[66,91],kb:[56,70],fb:[48,78],ea:[78,40],wa:[88,42],eb:[54,40],wb:[44,42],
+    x:'<path class="ar" d="M8 90 Q22 50 46 84"/><text x="84" y="70">2 s</text>'},
+  fLat:{h:[44,32],n:[44,42],p:[48,64],kb:[34,74],fb:[32,91],ka:[74,78],fa:[96,91],ea:[42,52],wa:[50,58],eb:[52,52],wb:[52,58],
+    x:'<path class="ar" d="M76 64 L96 72"/>'},
+  step:{h:[60,10],n:[60,20],p:[58,46],ka:[78,48],fa:[76,66],kb:[52,68],fb:[48,91],ea:[66,32],wa:[70,42],eb:[54,32],wb:[50,42],
+    u:'<rect class="pr" x="62" y="66" width="38" height="26" rx="2"/>',x:'<path class="ar" d="M108 60 V36"/>'},
+  slam:{h:[60,30],n:[60,40],p:[60,64],ka:[68,78],fa:[72,91],kb:[52,78],fb:[48,91],ea:[66,28],wa:[64,16],eb:[54,28],wb:[56,16],
+    x:'<circle class="ball" cx="60" cy="9" r="7"/><path class="ar" d="M74 12 Q100 30 94 84"/><ellipse class="pr" cx="94" cy="91" rx="8" ry="2"/>'},
+  deadbug:{h:[16,84],n:[28,86],p:[60,86],ka:[80,85],fa:[102,83],kb:[62,66],fb:[80,66],ea:[30,72],wa:[30,56],eb:[18,78],wb:[8,72],
+    x:'<path class="dash" d="M28 91 H62"/>'},
+  elast:{h:[60,28],n:[60,38],p:[60,60],ka:[70,74],fa:[74,91],kb:[50,74],fb:[46,91],ea:[70,46],wa:[65,58],eb:[50,46],wb:[55,58],
+    x:'<line class="band" x1="50" y1="78" x2="70" y2="78"/><path class="ar" d="M84 60 H110"/>'},
+  nordique:{h:[80,42],n:[72,50],p:[56,72],ka:[40,90],fa:[20,90],kb:[40,90],fb:[20,90],ea:[82,60],wa:[90,72],eb:[80,62],wb:[88,74],
+    u:'<rect class="pr" x="8" y="80" width="20" height="8" rx="2"/>',x:'<path class="ar" d="M90 34 Q104 52 104 82"/>'},
+  assis:{h:[58,30],n:[54,38],p:[44,62],ka:[64,64],fa:[62,91],kb:[64,61],fb:[88,58],ea:[64,44],wa:[76,46],eb:[62,46],wb:[74,48],
+    u:'<rect class="pr" x="16" y="64" width="32" height="28" rx="2"/>',x:'<path class="ar" d="M22 54 V30"/>'},
+  lancers:{h:[46,24],n:[46,34],p:[46,58],ka:[56,74],fa:[62,91],kb:[38,74],fb:[34,91],ea:[54,44],wa:[60,56],eb:[50,46],wb:[58,62],
+    x:'<line class="stick" x1="56" y1="50" x2="76" y2="90"/><path class="stick" d="M76 90 H86"/><ellipse class="puck" cx="92" cy="90" rx="4" ry="1.8"/><path class="ar" d="M94 84 Q100 72 104 70"/><rect x="104" y="66" width="14" height="26" fill="none" stroke="#7f97b6" stroke-width="2"/><path class="dash" d="M104 74 H118 M104 82 H118 M111 66 V92"/>'},
+  maniement:{h:[46,24],n:[46,34],p:[46,58],ka:[56,74],fa:[62,91],kb:[38,74],fb:[34,91],ea:[54,44],wa:[60,56],eb:[50,46],wb:[58,62],
+    x:'<line class="stick" x1="56" y1="50" x2="76" y2="90"/><path class="stick" d="M76 90 H86"/><ellipse class="puck" cx="91" cy="89" rx="4" ry="1.8"/><path class="dash" d="M86 80 Q96 70 104 80 Q112 90 118 78"/>'},
+  coord:{h:[56,16],n:[56,26],p:[56,54],ka:[60,72],fa:[62,91],kb:[52,72],fb:[50,91],ea:[66,30],wa:[74,22],eb:[50,40],wb:[48,52],
+    u:'<rect class="pr" x="108" y="6" width="6" height="86"/>',x:'<circle class="ball" cx="82" cy="18" r="4"/><path class="dash" d="M86 18 Q98 10 106 24 Q96 34 80 26"/>'},
+  fenteGenou:{h:[52,26],n:[52,36],p:[52,62],ka:[72,64],fa:[72,91],kb:[44,90],fb:[24,90],ea:[60,48],wa:[68,60],eb:[58,50],wb:[66,62],
+    x:'<path class="ar" d="M38 66 H56"/>'},
+  papillon:{h:[60,40],n:[60,50],p:[60,82],ka:[84,80],fa:[64,90],kb:[36,80],fb:[56,90],ea:[68,66],wa:[63,86],eb:[52,66],wb:[57,86],
+    x:'<path class="ar" d="M90 74 L98 86"/><path class="ar" d="M30 74 L22 86"/>'},
+  h9090:{h:[56,40],n:[56,50],p:[56,82],ka:[80,88],fa:[92,72],kb:[34,88],fb:[22,72],ea:[66,64],wa:[74,76],eb:[46,64],wb:[38,76]},
+  ischios:{h:[64,52],n:[56,60],p:[34,86],ka:[60,88],fa:[88,88],kb:[60,88],fb:[88,88],ea:[70,72],wa:[84,82],eb:[68,74],wb:[82,84]},
+  chatVache:{h:[90,60],n:[80,64],p:[44,64],ka:[44,91],fa:[22,90],kb:[44,91],fb:[22,90],ea:[80,78],wa:[80,91],eb:[78,78],wb:[78,91],
+    x:'<path class="ar2" d="M48 52 Q62 36 76 52"/>'}
+};
+function pts(){var a=[];for(var i=0;i<arguments.length;i++){a.push(arguments[i].join(","));}return a.join(" ");}
+function draw(k){
+  var P=POSE[k]; if(!P) return "";
+  var s='<svg class="fig" viewBox="0 0 120 100" role="img" aria-hidden="true">';
+  s+='<line class="gr" x1="0" y1="92" x2="120" y2="92"/>';
+  s+=(P.u||"");
+  s+='<polyline class="lb" points="'+pts(P.p,P.kb,P.fb)+'"/>';
+  s+='<polyline class="lb" points="'+pts(P.n,P.eb,P.wb)+'"/>';
+  s+='<polyline class="lf" points="'+pts(P.n,P.p)+'"/>';
+  s+='<polyline class="lf" points="'+pts(P.p,P.ka,P.fa)+'"/>';
+  s+='<polyline class="lf" points="'+pts(P.n,P.ea,P.wa)+'"/>';
+  s+='<circle class="hd" cx="'+P.h[0]+'" cy="'+P.h[1]+'" r="6.5"/>';
+  s+=(P.x||"");
+  return s+"</svg>";
+}
+
+/* ---------- Exercices ---------- */
+var EX = {
+  warm:[
+    ["corde","Corde à danser","2 min",1,"Petits sauts légers sur le bout des pieds."],
+    ["balance","Balancements de jambes","10 par jambe",2,"Une main au mur. Devant-derrière, puis de côté."],
+    ["fenteRot","Fentes avec rotation","8 par jambe",2,"Genou arrière proche du sol. Tourne le haut du corps vers la jambe avant."],
+    ["skips","Skips A (genoux hauts)","2 × 15 m",2,"Genoux hauts, les bras aident."],
+    ["chasses","Pas chassés de côté","2 × 15 m",2,"Reste bas, comme en position de hockey."],
+    ["sprintProg","Sprints progressifs","3 × 15 m",3,"Le 1er à 50 %, le 2e à 70 %, le 3e à 90 %."]
+  ],
+  s1:[
+    ["box","Sauts sur boîte basse","4 × 4",4,"Saute fort, atterris doucement. Redescends en marchant, pas en sautant."],
+    ["patineur","Bonds de patineur","3 × 5 par côté",3,"Pousse de côté comme un coup de patin. Tiens l'atterrissage 2 secondes."],
+    ["mbRot","Lancer de médecine-ball en rotation contre le mur (2 à 4 kg)","3 × 5 par côté",3,"La puissance part des jambes et des hanches, pas juste des bras."],
+    ["sprint10","Sprints 10 m, départs variés","6 sprints",6,"Debout, à genoux, de côté. Repos 1 min entre chaque sprint."],
+    ["planche","Planche","3 × 20 à 30 s",3,"Corps droit comme une planche, du talon à la tête."]
+  ],
+  s1b:[
+    ["chaise","Chaise au mur","3 × 20 à 30 s",3,"Dos collé au mur, genoux à angle droit."],
+    ["mollets","Mollets sur un pied","2 × 12 par jambe",2,"Monte haut sur le bout du pied, redescends lentement. Une main au mur pour l'équilibre."],
+    ["pont","Pont fessier sur une jambe","2 × 10 par jambe",2,"Pousse dans le talon et monte les fesses. L'autre jambe reste allongée."]
+  ],
+  s2:[
+    ["goblet","Goblet squat","3 × 8",3,"Haltère contre la poitrine. Genoux dans l'axe des pieds."],
+    ["fenteArr","Fente arrière sur place","3 × 6 par jambe",3,"Recule une jambe et descends droit. Le genou arrière frôle le sol."],
+    ["rdl","Soulevé de terre roumain (léger)","3 × 8",3,"Dos plat, pousse les fesses vers l'arrière. Les haltères glissent le long des jambes."],
+    ["pompes","Pompes","3 × 8 à 10",3,"Corps droit du début à la fin. Sur les genoux si ça devient croche."],
+    ["rangee","Rangée inversée","3 × 8",3,"Sous une barre, corps droit. Tire ta poitrine vers la barre."],
+    ["copen","Planche Copenhague","2 × 15 s par côté",2,"Planche de côté, la jambe du dessus sur un banc. Protège les aines."]
+  ],
+  s3:[
+    ["longueur","Saut en longueur","4 × 3",4,"Balance les bras, saute loin, atterris sans tomber."],
+    ["uneJambe","Sauts sur une jambe","3 × 3 par jambe",3,"Petit saut vers l'avant. Tiens l'atterrissage 2 secondes."],
+    ["fLat","Fentes latérales","3 × 6 par côté",3,"Grand pas de côté, fesses vers l'arrière. L'autre jambe reste droite."],
+    ["step","Step-up sur boîte","3 × 6 par jambe",3,"Pousse avec la jambe qui est sur la boîte, pas avec celle du sol."],
+    ["slam","Slam au médecine-ball","3 × 5",3,"Ballon au-dessus de la tête, lance-le au sol de toutes tes forces."],
+    ["deadbug","Dead bug","2 × 8 par côté",2,"Sur le dos. Allonge un bras et la jambe opposée. Bas du dos collé au sol."]
+  ],
+  s3b:[
+    ["elast","Marche de côté avec élastique","2 × 10 pas par côté",2,"Élastique autour des genoux. Reste bas, les pieds ne se touchent jamais."],
+    ["nordique","Nordique assisté","2 × 4",2,"Talons sous un divan ou tenus par papa. Descends très lentement vers l'avant, rattrape-toi avec les mains."],
+    ["assis","Assis-debout sur une jambe","2 × 5 par jambe",2,"Assis sur un banc, une jambe allongée. Lève-toi avec l'autre jambe seulement."]
+  ],
+  daily:[
+    ["lancers","Lancers","50 à 100",0,"Vise les coins. Suis le thème du jour (tableau plus haut)."],
+    ["maniement","Maniement de rondelle","10 min",0,"Tête haute. Devant toi, large, en 8, puis en marchant."],
+    ["coord","Coordination","5 min",0,"Balle de tennis contre le mur, main droite puis main gauche. Ou jongle avec la rondelle sur ta palette."]
+  ],
+  mob:[
+    ["fenteGenou","Fente à genou","30 s par côté",0,"Un genou au sol, avance doucement les hanches. Tu sens l'étirement à l'avant de la hanche."],
+    ["papillon","Papillon","30 s",0,"Assis, plantes de pieds collées. Laisse les genoux descendre vers le sol."],
+    ["h9090","90/90 des hanches","30 s par côté",0,"Assis, les deux genoux pliés à angle droit, une jambe devant, l'autre sur le côté. Dos droit."],
+    ["ischios","Ischios","30 s par jambe",0,"Assis, jambe allongée. Penche-toi vers ton pied, dos droit."],
+    ["chatVache","Chat-vache","8 fois",0,"À quatre pattes. Arrondis le dos comme un chat, puis creuse-le doucement."]
+  ]
+};
+var GROUP = {warm:["warm"],s1:["s1","s1b"],s2:["s2"],s3:["s3","s3b"]};
+
+var week = parseInt(store.get("week"),10); if(!(week>=1&&week<=12)) week=1;
+function phaseOf(w){return w<=4?1:(w<=8?2:3);}
+var PHASE_NAME = {1:"J'apprends",2:"Je construis",3:"Je performe"};
+
+function renderCards(){
+  document.querySelectorAll("[data-list]").forEach(function(el){
+    var list=el.getAttribute("data-list"), html="";
+    EX[list].forEach(function(e){
+      html+='<article class="card"><div class="pic">'+draw(e[0])+'</div><div class="body">'+
+        '<div class="top"><h4>'+e[1]+'</h4><span class="dose">'+e[2]+'</span></div><p>'+e[4]+'</p>';
+      if(e[3]>0){
+        html+='<div class="sets"><span class="lbl">Séries</span>';
+        for(var i=1;i<=e[3];i++){
+          var id="w"+week+":"+list+":"+e[0]+":"+i, on=store.get(id)==="1";
+          html+='<label class="'+(on?"done":"")+'"><input type="checkbox" data-k="'+id+'"'+(on?" checked":"")+'>'+i+'</label>';
+        }
+        html+='</div>';
+      }
+      html+='</div></article>';
+    });
+    el.innerHTML=html;
+  });
+  updateProgress();
+}
+function updateProgress(){
+  Object.keys(GROUP).forEach(function(g){
+    var tot=0,done=0;
+    GROUP[g].forEach(function(l){EX[l].forEach(function(e){for(var i=1;i<=e[3];i++){tot++;if(store.get("w"+week+":"+l+":"+e[0]+":"+i)==="1")done++;}});});
+    var p=document.getElementById("p-"+g),b=document.getElementById("b-"+g);
+    if(p){p.textContent="Semaine "+week+" · "+done+" / "+tot+" séries";}
+    if(b){b.style.width=(tot?Math.round(done/tot*100):0)+"%";}
+  });
+}
+document.addEventListener("change",function(ev){
+  var t=ev.target;
+  if(t.matches(".sets input")){
+    store.set(t.getAttribute("data-k"),t.checked?"1":null);
+    t.parentNode.classList.toggle("done",t.checked);
+    updateProgress();
+  } else if(t.matches(".chk input")){
+    store.set(t.getAttribute("data-k"),t.checked?"1":null);
+  }
+});
+document.addEventListener("input",function(ev){
+  var t=ev.target;
+  if(t.matches(".tests input")){store.set(t.getAttribute("data-k"),t.value.trim());renderDeltas();}
+});
+document.querySelectorAll("[data-reset]").forEach(function(btn){
+  btn.addEventListener("click",function(){
+    var g=btn.getAttribute("data-reset");
+    if(!confirm("Effacer les cases de la semaine "+week+" pour cette page?")) return;
+    GROUP[g].forEach(function(l){EX[l].forEach(function(e){for(var i=1;i<=e[3];i++){store.set("w"+week+":"+l+":"+e[0]+":"+i,null);}});});
+    renderCards();
+  });
+});
+
+/* ---------- Routine ---------- */
+var DAYS=["Lun","Mar","Mer","Jeu","Ven","Sam","Dim"];
+var COLS=["Gym","Lancers","Rondelle","Coord.","Mobilité","Eau","Au lit à l'heure"];
+function renderRoutine(){
+  var h='<tr><th>Semaine '+week+'</th>'+COLS.map(function(c){return "<th>"+c+"</th>";}).join("")+"</tr>";
+  DAYS.forEach(function(d,di){
+    h+='<tr class="'+(di===5?"m":"")+'"><td>'+d+(di===5?" · match":"")+"</td>";
+    COLS.forEach(function(c,ci){
+      var gymDay=(di===0||di===2||di===4);
+      if(ci===0&&!gymDay){h+="<td>–</td>";return;}
+      var id="w"+week+":rt:"+di+":"+ci, on=store.get(id)==="1";
+      h+='<td><input type="checkbox" aria-label="'+d+' '+c+'" data-k="'+id+'"'+(on?" checked":"")+"></td>";
+    });
+    h+="</tr>";
+  });
+  document.getElementById("routine").innerHTML=h;
+}
+
+/* ---------- Tests ---------- */
+var TESTS=[["saut","Saut en longueur (cm)",1],["sprint","Sprint 10 m (s)",-1],["prec","Précision (/20)",1]];
+var MOMENTS=[["d","Départ"],["s6","Semaine 6"],["s12","Semaine 12"]];
+function renderTests(){
+  var h="<tr><th>Test</th>"+MOMENTS.map(function(m){return "<th>"+m[1]+"</th>";}).join("")+"</tr>";
+  TESTS.forEach(function(t){
+    h+="<tr><td><b>"+t[1]+"</b></td>";
+    MOMENTS.forEach(function(m){
+      var id="test:"+t[0]+":"+m[0], v=store.get(id)||"";
+      h+='<td><input inputmode="decimal" aria-label="'+t[1]+' '+m[1]+'" data-k="'+id+'" value="'+v.replace(/"/g,"")+'"><span class="delta" data-d="'+t[0]+":"+m[0]+'"></span></td>';
+    });
+    h+="</tr>";
+  });
+  document.getElementById("tests").innerHTML=h;
+  renderDeltas();
+}
+function num(v){v=(v||"").replace(",",".");var n=parseFloat(v);return isNaN(n)?null:n;}
+function renderDeltas(){
+  TESTS.forEach(function(t){
+    var base=num(store.get("test:"+t[0]+":d"));
+    ["s6","s12"].forEach(function(m){
+      var el=document.querySelector('[data-d="'+t[0]+":"+m+'"]'), v=num(store.get("test:"+t[0]+":"+m));
+      if(!el) return;
+      if(base===null||v===null){el.textContent="";return;}
+      var d=Math.round((v-base)*100)/100, better=(d*t[2])>0;
+      el.textContent=d===0?"=":((d>0?"+":"")+String(d).replace(".",","))+(better?" 💪":"");
+      el.style.color=better||d===0?"var(--ok)":"var(--warn)";
+    });
+  });
+}
+
+/* ---------- Semaine ---------- */
+function renderChips(){
+  var h="";
+  for(var w=1;w<=12;w++){
+    var tag=(w===4||w===8)?"facile":((w===1||w===6||w===12)?"tests":"");
+    h+='<button type="button" data-w="'+w+'" class="'+(w===week?"on":"")+'">S'+w+(tag?"<small>"+tag+"</small>":"<small>&nbsp;</small>")+"</button>";
+  }
+  var c=document.getElementById("chips"); c.innerHTML=h;
+  c.querySelectorAll("button").forEach(function(b){b.addEventListener("click",function(){setWeek(parseInt(b.getAttribute("data-w"),10));});});
+  document.querySelectorAll(".ph").forEach(function(p){p.classList.toggle("on",parseInt(p.getAttribute("data-ph"),10)===phaseOf(week));});
+}
+function setWeek(w){
+  week=Math.max(1,Math.min(12,w)); store.set("week",String(week));
+  document.getElementById("wk").textContent="Semaine "+week;
+  document.getElementById("wkPhase").textContent=PHASE_NAME[phaseOf(week)];
+  renderCards(); renderRoutine(); renderChips();
+}
+document.getElementById("wkMinus").addEventListener("click",function(){setWeek(week-1);});
+document.getElementById("wkPlus").addEventListener("click",function(){setWeek(week+1);});
+
+/* ---------- Onglets ---------- */
+function show(){
+  var id=(location.hash||"#plan").slice(1);
+  if(!document.getElementById(id)||document.getElementById(id).tagName!=="SECTION") id="plan";
+  document.querySelectorAll("main section").forEach(function(s){s.classList.toggle("on",s.id===id);});
+  document.querySelectorAll("#tabs a").forEach(function(a){
+    var on=a.getAttribute("href")==="#"+id; a.classList.toggle("on",on);
+    if(on&&a.scrollIntoView){try{a.scrollIntoView({block:"nearest",inline:"center"});}catch(e){}}
+  });
+}
+window.addEventListener("hashchange",function(){show();window.scrollTo(0,0);});
+
+setWeek(week); renderTests(); show();
+})();
+</script>
+</body>
+</html>
