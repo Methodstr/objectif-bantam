@@ -108,7 +108,31 @@ th{font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--mute
 .macro h4{margin:0 0 4px;font-size:17px}
 .macro .tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:99px;background:var(--ice);color:var(--navy2);margin-bottom:6px}
 .note{font-size:13px;color:var(--muted)}
-footer{text-align:center;font-size:13px;color:var(--muted);padding:20px 16px 40px}
+footer{text-align:center;font-size:13px;color:var(--muted);padding:20px 16px 150px}
+/* minuterie */
+.tbtns{display:flex;gap:6px;flex-wrap:wrap}
+.tbtn{border:0;background:var(--gold);color:var(--navy);font:700 14px Inter,sans-serif;padding:9px 12px;border-radius:10px;cursor:pointer}
+.tbtn.big{font-size:16px;padding:12px 16px}
+#fab{position:fixed;right:16px;bottom:16px;z-index:20;background:var(--gold);color:var(--navy);border:0;border-radius:99px;padding:13px 18px;font:700 15px Inter,sans-serif;box-shadow:0 6px 18px rgba(0,0,0,.25);cursor:pointer}
+#tm{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--navy);color:#fff;box-shadow:0 -4px 16px rgba(0,0,0,.25);padding:10px 16px calc(10px + env(safe-area-inset-bottom));display:none}
+#tm.on{display:block}
+.tm-row{max-width:960px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.tm-info{flex:1;min-width:0}
+.tm-lbl{font-size:14px;font-weight:600;color:var(--ice2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tm-time{font:700 44px/1.05 Oswald,sans-serif;font-variant-numeric:tabular-nums}
+.tm-time.hot{color:var(--gold)}
+.tm-time.done{color:#5fd38d}
+.tm-bar{height:5px;background:rgba(255,255,255,.15);border-radius:99px;margin-top:6px;overflow:hidden}
+.tm-bar i{display:block;height:100%;background:var(--gold);width:0}
+.tm-ctl{display:flex;gap:8px}
+.tm-ctl button{width:52px;height:52px;border-radius:14px;border:0;font-size:22px;cursor:pointer;background:rgba(255,255,255,.14);color:#fff}
+.tm-ctl .go{background:var(--gold);color:var(--navy)}
+.tm-pre{max-width:960px;margin:8px auto 0;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.tm-pre button{border:1px solid rgba(255,255,255,.3);background:transparent;color:#fff;border-radius:99px;padding:6px 11px;font:600 13px Inter,sans-serif;cursor:pointer}
+.tm-pre label{font-size:13px;color:var(--ice2);display:flex;align-items:center;gap:6px;margin-left:auto;cursor:pointer}
+.tm-pre input{width:18px;height:18px;accent-color:var(--gold)}
+@media (max-width:480px){.tm-time{font-size:38px}.tm-ctl button{width:46px;height:46px}}
+@media print{#tm,#fab{display:none!important}}
 /* dessins */
 .fig .gr{stroke:#9fb2c8;stroke-width:1.5}
 .fig .lb{fill:none;stroke:#8aa2c2;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
@@ -403,7 +427,7 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:20px 16px 40p
   </div>
   <div class="grid2">
     <div class="box"><b>Saut en longueur pieds joints</b><br>3 essais, tu notes le meilleur, en cm.</div>
-    <div class="box"><b>Sprint 10 m</b><br>2 essais, tu notes le meilleur. Papa chronomètre avec le téléphone.</div>
+    <div class="box"><b>Sprint 10 m</b><br>2 essais, tu notes le meilleur. Papa chronomètre avec le chrono de la page.<div class="tbtns" style="margin-top:8px"><button type="button" class="tbtn" data-chrono="1">⏱ Ouvrir le chrono</button></div></div>
     <div class="box"><b>Précision</b><br>20 lancers du poignet : combien de cibles touchées?</div>
   </div>
   <p class="note">Tes cases et tes résultats sont sauvegardés dans ce navigateur, sur cet appareil seulement.</p>
@@ -411,6 +435,29 @@ footer{text-align:center;font-size:13px;color:var(--muted);padding:20px 16px 40p
 
 </main>
 <footer>Objectif Bantam · Le plan de Théo · Vite et propre.</footer>
+
+<button type="button" id="fab">⏱ Minuterie</button>
+<div id="tm" role="region" aria-label="Minuterie">
+  <div class="tm-row">
+    <div class="tm-info">
+      <div class="tm-lbl" id="tmLbl">Minuterie</div>
+      <div class="tm-time" id="tmTime">1:00</div>
+      <div class="tm-bar"><i id="tmBar"></i></div>
+    </div>
+    <div class="tm-ctl">
+      <button type="button" class="go" id="tmGo" aria-label="Démarrer">▶</button>
+      <button type="button" id="tmReset" aria-label="Recommencer">↺</button>
+      <button type="button" id="tmClose" aria-label="Fermer">✕</button>
+    </div>
+  </div>
+  <div class="tm-pre">
+    <button type="button" data-pre="60">Repos 1:00</button>
+    <button type="button" data-pre="30">0:30</button>
+    <button type="button" data-pre="120">2:00</button>
+    <button type="button" data-pre="chrono">Chrono</button>
+    <label><input type="checkbox" id="tmAuto"> Repos auto</label>
+  </div>
+</div>
 
 <script>
 (function(){
@@ -570,6 +617,16 @@ var EX = {
   ]
 };
 var GROUP = {warm:["warm"],s1:["s1","s1b"],s2:["s2"],s3:["s3","s3b"]};
+/* Exercices au temps : durées en secondes; sides = un côté puis l'autre */
+var TIMERS = {
+  corde:{s:[120]}, planche:{s:[20,30]}, chaise:{s:[20,30]}, copen:{s:[15],sides:1},
+  maniement:{s:[600]}, coord:{s:[300]},
+  fenteGenou:{s:[30],sides:1}, papillon:{s:[30]}, h9090:{s:[30],sides:1}, ischios:{s:[30],sides:1}
+};
+var REST_LISTS = {s1:1,s1b:1,s2:1,s3:1,s3b:1};
+var NAME = {};
+Object.keys(EX).forEach(function(l){EX[l].forEach(function(e){NAME[e[0]]=e[1];});});
+function secLabel(s){return s>=60?(s/60)+" min":s+" s";}
 
 var week = parseInt(store.get("week"),10); if(!(week>=1&&week<=12)) week=1;
 function phaseOf(w){return w<=4?1:(w<=8?2:3);}
@@ -581,6 +638,12 @@ function renderCards(){
     EX[list].forEach(function(e){
       html+='<article class="card"><div class="pic">'+draw(e[0])+'</div><div class="body">'+
         '<div class="top"><h4>'+e[1]+'</h4><span class="dose">'+e[2]+'</span></div><p>'+e[4]+'</p>';
+      var tc=TIMERS[e[0]];
+      if(tc){
+        html+='<div class="tbtns">';
+        tc.s.forEach(function(sec){html+='<button type="button" class="tbtn" data-ex="'+e[0]+'" data-sec="'+sec+'">⏱ '+secLabel(sec)+(tc.sides?" × 2 côtés":"")+'</button>';});
+        html+='</div>';
+      }
       if(e[3]>0){
         html+='<div class="sets"><span class="lbl">Séries</span>';
         for(var i=1;i<=e[3];i++){
@@ -610,6 +673,9 @@ document.addEventListener("change",function(ev){
     store.set(t.getAttribute("data-k"),t.checked?"1":null);
     t.parentNode.classList.toggle("done",t.checked);
     updateProgress();
+    if(t.checked&&REST_LISTS[t.getAttribute("data-k").split(":")[1]]&&autoRest()){
+      tmLoad([{lbl:"Repos",sec:60}],"Repos · prochaine série",true);
+    }
   } else if(t.matches(".chk input")){
     store.set(t.getAttribute("data-k"),t.checked?"1":null);
   }
@@ -707,6 +773,105 @@ function show(){
   });
 }
 window.addEventListener("hashchange",function(){show();window.scrollTo(0,0);});
+
+/* ---------- Minuterie ---------- */
+var T={segs:[{lbl:"Repos",sec:60}],i:0,left:60000,end:0,run:false,up:false,el:0,start:0,title:"Repos",done:false,lastS:null};
+var $tm=document.getElementById("tm"),$fab=document.getElementById("fab"),$lbl=document.getElementById("tmLbl"),
+    $time=document.getElementById("tmTime"),$bar=document.getElementById("tmBar"),$go=document.getElementById("tmGo"),$auto=document.getElementById("tmAuto");
+function autoRest(){return store.get("autoRest")!=="0";}
+$auto.checked=autoRest();
+$auto.addEventListener("change",function(){store.set("autoRest",$auto.checked?null:"0");});
+var ac=null, wl=null;
+function beep(f,d){
+  try{
+    ac=ac||new (window.AudioContext||window.webkitAudioContext)();
+    if(ac.state==="suspended") ac.resume();
+    var o=ac.createOscillator(),g=ac.createGain(),t=ac.currentTime;
+    o.type="sine"; o.frequency.value=f; o.connect(g); g.connect(ac.destination);
+    g.gain.setValueAtTime(.0001,t); g.gain.exponentialRampToValueAtTime(.5,t+.01); g.gain.exponentialRampToValueAtTime(.0001,t+d);
+    o.start(t); o.stop(t+d+.05);
+  }catch(e){}
+}
+function buzz(p){try{if(navigator.vibrate) navigator.vibrate(p);}catch(e){}}
+function wake(on){
+  try{
+    if(on&&!wl&&navigator.wakeLock){navigator.wakeLock.request("screen").then(function(x){wl=x;x.addEventListener("release",function(){wl=null;});}).catch(function(){});}
+    if(!on&&wl){wl.release();wl=null;}
+  }catch(e){}
+}
+document.addEventListener("visibilitychange",function(){if(document.visibilityState==="visible"&&T.run) wake(true);});
+function fmt(ms){
+  if(T.up){var t=Math.floor(ms/100)/10,m=Math.floor(t/60),r=(t-m*60).toFixed(1);return m+":"+(r<10?"0":"")+r.replace(".",",");}
+  var s=Math.max(0,Math.ceil(ms/1000)),mm=Math.floor(s/60),ss=s%60;return mm+":"+(ss<10?"0":"")+ss;
+}
+function paint(){
+  var seg=T.segs[T.i];
+  if(T.done){$lbl.textContent=T.title+" · Terminé!";}
+  else{$lbl.textContent=T.title+(T.segs.length>1?" · "+seg.lbl:"");}
+  $time.textContent=T.up?fmt(T.el):fmt(T.left);
+  var hot=!T.up&&T.run&&T.left<=3000&&seg.lbl!=="Prêt";
+  $time.className="tm-time"+(T.done?" done":(hot||seg.lbl==="Prêt"&&T.run?" hot":""));
+  $bar.style.width=T.up?"0":(Math.min(100,Math.max(0,(1-T.left/(seg.sec*1000))*100))+"%");
+  $go.textContent=T.run?"⏸":"▶"; $go.setAttribute("aria-label",T.run?"Pause":"Démarrer");
+}
+function tmOpen(){$tm.classList.add("on");$fab.style.display="none";}
+function tmLoad(segs,title,autostart){
+  T.segs=segs;T.i=0;T.up=false;T.left=segs[0].sec*1000;T.run=false;T.done=false;T.el=0;T.title=title;T.lastS=null;
+  tmOpen(); paint(); if(autostart) tmGo();
+}
+function tmChrono(){
+  T.segs=[{lbl:"Chrono",sec:0}];T.i=0;T.up=true;T.el=0;T.run=false;T.done=false;T.title="Chrono";
+  tmOpen(); paint();
+}
+function tmGo(){
+  if(T.run){
+    T.run=false; if(T.up){T.el=Date.now()-T.start;}else{T.left=T.end-Date.now();} wake(false); paint(); return;
+  }
+  if(T.done){tmReset();}
+  T.run=true; beep(880,.06);
+  if(T.up){T.start=Date.now()-T.el;}else{T.end=Date.now()+T.left;}
+  wake(true); paint();
+}
+function tmReset(){T.i=0;T.run=false;T.done=false;T.el=0;T.lastS=null;T.left=T.segs[0].sec*1000;wake(false);paint();}
+function tick(){
+  if(!T.run) return;
+  if(T.up){T.el=Date.now()-T.start;paint();return;}
+  T.left=T.end-Date.now();
+  var s=Math.ceil(T.left/1000);
+  if(s!==T.lastS){T.lastS=s;if(s>=1&&s<=3) beep(660,.12);}
+  if(T.left<=0){
+    T.i++;
+    if(T.i<T.segs.length){
+      beep(990,.35); buzz(250);
+      T.left=T.segs[T.i].sec*1000; T.end=Date.now()+T.left; T.lastS=null;
+    }else{
+      T.i=T.segs.length-1; T.left=0; T.run=false; T.done=true;
+      beep(990,.7); buzz([250,120,250]); wake(false);
+    }
+  }
+  paint();
+}
+setInterval(tick,100);
+$go.addEventListener("click",tmGo);
+document.getElementById("tmReset").addEventListener("click",tmReset);
+document.getElementById("tmClose").addEventListener("click",function(){tmReset();$tm.classList.remove("on");$fab.style.display="";});
+$fab.addEventListener("click",function(){tmOpen();paint();});
+document.querySelectorAll("[data-pre]").forEach(function(b){
+  b.addEventListener("click",function(){
+    var v=b.getAttribute("data-pre");
+    if(v==="chrono"){tmChrono();return;}
+    var sec=parseInt(v,10); tmLoad([{lbl:sec===60?"Repos":"Minuterie",sec:sec}],sec===60?"Repos":"Minuterie "+secLabel(sec),true);
+  });
+});
+document.addEventListener("click",function(ev){
+  var b=ev.target.closest?ev.target.closest(".tbtn"):null; if(!b) return;
+  if(b.hasAttribute("data-chrono")){tmChrono();return;}
+  var k=b.getAttribute("data-ex"),sec=parseInt(b.getAttribute("data-sec"),10),tc=TIMERS[k];
+  var segs=[{lbl:"Prêt",sec:3}];
+  if(tc.sides){segs.push({lbl:"Côté 1",sec:sec},{lbl:"Change de côté",sec:5},{lbl:"Côté 2",sec:sec});}
+  else{segs.push({lbl:"Go!",sec:sec});}
+  tmLoad(segs,NAME[k],true);
+});
 
 window.addEventListener("load",function(){setTimeout(function(){window.scrollTo(0,0);},0);});
 setWeek(week); renderTests(); show();
